@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import FoodTracker from './pages/FoodTracker';
 import Reports from './pages/Reports';
 import Profile from './pages/Profile';
+import ChatPage from './pages/ChatPage';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 // Create theme
@@ -111,6 +112,11 @@ function App() {
             <Route path="/profile" element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            } />
+            <Route path="/chat" element={
+              <ProtectedRoute>
+                <ChatPage />
               </ProtectedRoute>
             } />
             <Route path="*" element={<Navigate to="/" replace />} />

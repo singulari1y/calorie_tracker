@@ -22,7 +22,7 @@ const isProfileComplete = (req, res, next) => {
 };
 
 // Get user profile
-router.get('/profile', isAuthenticated, isProfileComplete, async (req, res) => {
+router.get('/profile', isAuthenticated, async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select('-googleId');
     res.json(user);
@@ -37,7 +37,10 @@ router.put('/profile', isAuthenticated, async (req, res) => {
     const { age, weight, height, gender, activityLevel, dailyCalorieGoal } = req.body;
     
     // Check if all required fields are provided
-    const profileComplete = age && weight && height && gender && activityLevel && dailyCalorieGoal;
+    if (!age || !weight || !height || !gender || !activityLevel || !dailyCalorieGoal) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+    const profileComplete = true;
 
     const user = await User.findByIdAndUpdate(
       req.user._id,

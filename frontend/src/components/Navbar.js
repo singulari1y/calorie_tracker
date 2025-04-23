@@ -15,6 +15,7 @@ import {
   Dashboard as DashboardIcon,
   Restaurant as RestaurantIcon,
   Assessment as AssessmentIcon,
+  Chat as ChatIcon,
 } from '@mui/icons-material';
 import { useAuth } from '../context/AuthContext';
 
@@ -84,6 +85,18 @@ const Navbar = () => {
               }}
             >
               Reports
+            </Button>
+            <Button
+              component={RouterLink}
+              to="/chat"
+              startIcon={<ChatIcon />}
+              sx={{
+                color: 'white',
+                fontWeight: 'bold',
+                textTransform: 'none',
+              }}
+            >
+              Chat
             </Button>
             <IconButton
               size="large"
